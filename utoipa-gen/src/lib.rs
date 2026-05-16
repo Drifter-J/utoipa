@@ -1502,7 +1502,7 @@ pub fn derive_to_schema(input: TokenStream) -> TokenStream {
 ///
 /// With **actix_extras** feature enabled the you can leave out definitions for **path**, **operation**
 /// and **parameter types**.
-/// ```rust
+/// ```rust,ignore
 /// use actix_web::{get, web, HttpResponse, Responder};
 /// use serde_json::json;
 ///
@@ -1523,7 +1523,7 @@ pub fn derive_to_schema(input: TokenStream) -> TokenStream {
 ///
 /// With **actix_extras** you may also not to list any _**params**_ if you do not want to specify any description for them. Params are
 /// resolved from path and the argument types of handler
-/// ```rust
+/// ```rust,ignore
 /// use actix_web::{get, web, HttpResponse, Responder};
 /// use serde_json::json;
 ///
@@ -1753,7 +1753,7 @@ pub fn derive_to_schema(input: TokenStream) -> TokenStream {
 /// ```
 ///
 /// _**Use of Rust's own `#[deprecated]` attribute will reflect to the generated OpenAPI spec and mark this operation as deprecated.**_
-/// ```rust
+/// ```rust,ignore
 /// # use actix_web::{get, web, HttpResponse, Responder};
 /// # use serde_json::json;
 /// #[utoipa::path(
@@ -1772,7 +1772,7 @@ pub fn derive_to_schema(input: TokenStream) -> TokenStream {
 /// ```
 ///
 /// _**Define context path for endpoint. The resolved **path** shown in OpenAPI doc will be `/api/pet/{id}`.**_
-/// ```rust
+/// ```rust,ignore
 /// # use actix_web::{get, web, HttpResponse, Responder};
 /// # use serde_json::json;
 /// #[utoipa::path(
@@ -2409,7 +2409,7 @@ pub fn openapi(input: TokenStream) -> TokenStream {
 ///
 /// _**Demonstrate [`IntoParams`][into_params] usage with resolving `Path` and `Query` parameters
 /// with _`actix-web`_**_.
-/// ```rust
+/// ```rust,ignore
 /// use actix_web::{get, HttpResponse, Responder};
 /// use actix_web::web::{Path, Query};
 /// use serde::Deserialize;
