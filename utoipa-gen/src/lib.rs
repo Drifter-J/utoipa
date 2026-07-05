@@ -32,9 +32,9 @@ use component::into_params::IntoParams;
 use ext::{PathOperationResolver, PathOperations, PathResolver};
 use openapi::OpenApi;
 use proc_macro::TokenStream;
-use quote::{quote, ToTokens, TokenStreamExt};
+use quote::{quote, ToTokens};
 
-use proc_macro2::{Group, Ident, Punct, TokenStream as TokenStream2};
+use proc_macro2::{Ident, Punct, TokenStream as TokenStream2};
 use syn::{
     bracketed,
     parse::{Parse, ParseStream},
@@ -3164,17 +3164,22 @@ where
             Self::Borrowed(values) => values.iter(),
         };
 
-        tokens.append(Group::new(
-            proc_macro2::Delimiter::Bracket,
-            values
-                .fold(Punctuated::new(), |mut punctuated, item| {
-                    punctuated.push_value(item);
-                    punctuated.push_punct(Punct::new(',', proc_macro2::Spacing::Alone));
+        // Emit a heap allocated `vec![...]` instead of a stack allocated array
+        // literal `[...]`. For schemas / params with a large number of items the
+        // array literal would be materialized on the stack in the generated code
+        // which can trigger `clippy::large_stack_arrays` and, for sufficiently
+        // large inputs, overflow the stack at runtime. See
+        // https://github.com/juhaku/utoipa/issues/1454.
+        let items = values
+            .fold(Punctuated::new(), |mut punctuated, item| {
+                punctuated.push_value(item);
+                punctuated.push_punct(Punct::new(',', proc_macro2::Spacing::Alone));
 
-                    punctuated
-                })
-                .to_token_stream(),
-        ));
+                punctuated
+            })
+            .to_token_stream();
+
+        tokens.extend(quote! { ::std::vec![#items] });
     }
 }
 
