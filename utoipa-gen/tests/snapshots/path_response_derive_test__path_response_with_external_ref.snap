@@ -1,7 +1,7 @@
 ---
 source: utoipa-gen/tests/path_response_derive_test.rs
-assertion_line: 419
 expression: responses
+snapshot_kind: text
 ---
 {
   "200": {
@@ -11,6 +11,7 @@ expression: responses
           "$ref": "./MyUser.json"
         }
       }
-    }
+    },
+    "description": ""
   }
 }

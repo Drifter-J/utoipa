@@ -1,7 +1,7 @@
 ---
 source: utoipa-gen/tests/schema_generics.rs
-assertion_line: 137
 expression: doc
+snapshot_kind: text
 ---
 {
   "openapi": "3.1.0",
@@ -58,6 +58,7 @@ expression: doc
         },
         "responses": {
           "200": {
+            "description": "",
             "content": {
               "application/json": {
                 "schema": {
@@ -125,6 +126,7 @@ expression: doc
             }
           },
           "400": {
+            "description": "",
             "content": {
               "application/json": {
                 "schema": {

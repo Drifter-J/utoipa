@@ -853,6 +853,7 @@ mod tests {
             json!({
                 "responses": {
                     "202": {
+                        "description": "",
                         "summary": "Accepted"
                     }
                 },
@@ -861,7 +862,9 @@ mod tests {
                         "{$request.body#/callbackUrl}": {
                             "query": {
                                 "responses": {
-                                    "200": {}
+                                    "200": {
+                                        "description": ""
+                                    }
                                 }
                             }
                         }
@@ -915,7 +918,9 @@ mod tests {
                         "{$request.body#/callbackUrl}": {
                             "query": {
                                 "responses": {
-                                    "200": {}
+                                    "200": {
+                                        "description": ""
+                                    }
                                 }
                             }
                         }
@@ -925,7 +930,9 @@ mod tests {
                     "EventPath": {
                         "query": {
                             "responses": {
-                                "200": {}
+                                "200": {
+                                    "description": ""
+                                }
                             }
                         }
                     }
@@ -1291,6 +1298,7 @@ mod tests {
             serde_json::to_value(response).unwrap(),
             json!({
                 "summary": "Streaming response",
+                "description": "",
                 "content": {
                     "application/json-seq": {
                         "itemSchema": {

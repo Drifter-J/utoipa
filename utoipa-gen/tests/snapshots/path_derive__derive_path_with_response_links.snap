@@ -1,7 +1,7 @@
 ---
 source: utoipa-gen/tests/path_derive.rs
-assertion_line: 1600
 expression: "&paths"
+snapshot_kind: text
 ---
 {
   "/test-links": {

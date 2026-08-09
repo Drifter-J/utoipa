@@ -123,7 +123,11 @@ builder! {
         pub summary: Option<String>,
 
         /// Description of the response. Response support markdown syntax.
-        #[serde(skip_serializing_if = "String::is_empty", default)]
+        ///
+        /// `description` is a required field on the [OpenAPI Response Object][response] so it is
+        /// always serialized, even when empty.
+        ///
+        /// [response]: https://spec.openapis.org/oas/latest.html#response-object
         pub description: String,
 
         /// Map of headers identified by their name. `Content-Type` header will be ignored.
